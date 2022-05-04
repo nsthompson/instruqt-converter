@@ -6,6 +6,14 @@ Python based CLI tool to convert Instruqt (<https://www.instruqt.com>) tracks to
 
 Before using the tool you will need to do the following:
 
+### Install requirements
+
+```shell
+pip install -r requirements.txt
+```
+
+### Configure .env
+
 ```shell
 cp ENVEXAMPLE .env
 ```
