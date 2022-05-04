@@ -1,0 +1,4 @@
+# instruqt-converter environment variables
+INSTRUQT_API_URL=https://play.instruqt.com/graphql
+INSTRUQT_API_KEY=<api-key>
+INSTRUQT_ORG_SLUG=<org-slug>

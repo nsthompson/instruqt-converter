@@ -1,6 +1,18 @@
+import logging
 import rich_click as click
+from rich.console import Console
+from rich.logging import RichHandler
 
+from core import config
 from converters import convert_to_dev, convert_to_prod
+
+
+FORMAT = "%(message)s"
+logging.basicConfig(
+    level="INFO", format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
+)
+
+log = logging.getLogger("rich")
 
 
 # Collect track path at runtime
@@ -32,12 +44,21 @@ from converters import convert_to_dev, convert_to_prod
     help='Track identifier used when converting to dev'
 )
 def convert_track(track_path, convert_to, identifier):
+    console = Console()
+    # Define settings dict
+    settings = {
+        "config": config,
+        "console": console,
+        "log": log
+    }
     # Convert Track
     if convert_to == "dev":
-        convert_to_dev(track_path, identifier)
+        log.info('Converting to [dev] with identifier [%s]', identifier)
+        convert_to_dev(settings, track_path, identifier)
 
     if convert_to == "prod":
-        convert_to_prod(track_path, identifier)
+        log.info('Converting to [prod] with identifier [%s]', identifier)
+        convert_to_prod(settings, track_path, identifier)
 
 
 if __name__ == "__main__":

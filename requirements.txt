@@ -1,3 +1,6 @@
 rich_click
+rich
 frontmatter
 pyyaml
+gql[all]
+pydantic
