@@ -1,6 +1,5 @@
 import logging
 import rich_click as click
-from rich.console import Console
 from rich.logging import RichHandler
 
 from core import config
@@ -44,11 +43,9 @@ log = logging.getLogger("rich")
     help='Track identifier used when converting to dev'
 )
 def convert_track(track_path, convert_to, identifier):
-    console = Console()
     # Define settings dict
     settings = {
         "config": config,
-        "console": console,
         "log": log
     }
     # Convert Track
