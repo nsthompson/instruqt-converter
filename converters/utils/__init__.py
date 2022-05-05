@@ -1,2 +1,2 @@
 from .api import API  # noqa
-from .dumper import YAMLHandler, str_presenter  # noqa
+from .handler import YAMLHandler, str_presenter  # noqa
