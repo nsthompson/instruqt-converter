@@ -4,3 +4,4 @@ frontmatter
 pyyaml
 gql[all]
 pydantic
+python-dotenv
