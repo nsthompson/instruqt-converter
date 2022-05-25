@@ -1,5 +1,6 @@
 import sys
 import glob
+import re
 import yaml
 import frontmatter
 import rich_click as click
@@ -96,6 +97,13 @@ def convert_to_prod(settings, track_path, identifier):
                         sort_keys=False,
                         handler=YAMLHandler()
                     )
+                # Remove the blank line between frontmatter and content
+                assignment_output = re.sub(
+                    '---\n\n',
+                    '---\n',
+                    assignment_output,
+                    1
+                )
                 with click.open_file(assignment, mode='w') as af_w:
                     af_w.write(assignment_output)
                     # Add single newline to end of file
