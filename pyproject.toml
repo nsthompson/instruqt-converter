@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name="instruqt-converter"
+description="Python based CLI tool to convert Instruqt tracks to and from a temporary state for testing."
+requires-python = ">=3.8"
+license= {text="MIT"}
+keywords = ["instruqt", "converter"]
+version="0.0.1"
+dependencies = [
+    "rich_click",
+    "rich",
+    "python-frontmatter",
+    "pyyaml",
+    "gql[all]",
+    "pydantic",
+    "python-dotenv"
+]
+
+[project.scripts]
+convert = "instruqt_converter.convert:convert_track"
