@@ -2,8 +2,8 @@ import logging
 import rich_click as click
 from rich.logging import RichHandler
 
-from core import config
-from converters import convert_to_dev, convert_to_prod
+from .core import config
+from .converters import convert_to_dev, convert_to_prod
 
 
 FORMAT = "%(message)s"
