@@ -31,13 +31,13 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.semantic_release]
 version_variable = [
-    "instruqt_converter/__init__.py:__version__"
+    'instruqt_converter/__init__.py:__version__'
 ]
 version_toml = [
-    "pyproject.toml:tool.poetry.version"
+    'pyproject.toml:tool.poetry.version'
 ]
 version_pattern = [
-    "README.md:Version: v{version}"
+    'README.md:Version: v{version}'
 ]
 branch = "main"                             # branch to make releases of
 changelog_file = "CHANGELOG.md"             # changelog file
