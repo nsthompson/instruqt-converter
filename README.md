@@ -6,33 +6,41 @@ Python based CLI tool to convert Instruqt (<https://www.instruqt.com>) tracks to
 
 Before using the tool you will need to do the following:
 
-### Install requirements
+### Install instruqt-converter
 
 ```shell
-pip install -r requirements.txt
+pip install instruqt-converter
 ```
 
-### Configure .env
+### Configure Environment Variables
 
 ```shell
-cp ENVEXAMPLE .env
+cp ENVEXAMPLE ~/.instruqt-converter.env
 ```
 
-After you have copied `ENVEXAMPLE` to `.env` update the following key/value pairs:
+After you have copied `ENVEXAMPLE` to `~/.instruqt-converter.env` update the following key/value pairs:
 
 * `INSTRUQT_API_KEY` - Replace `<api-key>` with the API key from your Instruqt team settings page
 
 * `INSTRUQT_ORG_SLUG` - Replace `<org-slug>` with your organizations slug
+
+Load the environment variables:
+
+```shell
+source ~/.instruqt-converter.env
+```
+
+You may want to add `source ~/.instruqt-converter.env` to your shell profile so the environment variables are loaded every time you log in.
 
 ## Usage
 
 ### Help
 
 ```shell
-vscode ➜ /workspaces/development/instruqt-converter $ python3 convert.py --help
-                                                                                                                                                        
- Usage: convert.py [OPTIONS]                                                                                                                            
-                                                                                                                                                        
+vscode ➜ /workspaces/development/instruqt-converter $ convert --help
+
+ Usage: convert [OPTIONS]
+
 ╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 │  *  --track         PATH        Path to Instruqt track [required]                                                                                    │
 │  *  --to            [dev|prod]  Convert To: [dev] - Convert to dev for testing [prod] - Convert to prod for promotion [required]                     │
@@ -44,7 +52,7 @@ vscode ➜ /workspaces/development/instruqt-converter $ python3 convert.py --hel
 ### Converting to Dev Track
 
 ```shell
-vscode ➜ /workspaces/development/instruqt-converter (main ✗) $ python3 convert.py --track /workspaces/development/network-automation-challenge-lab/instruqt-challenge-cisco-ansible --to dev
+vscode ➜ /workspaces/development/instruqt-converter (main ✗) $ convert --track /workspaces/development/network-automation-challenge-lab/instruqt-challenge-cisco-ansible --to dev
 [21:41:23] INFO     Converting to [dev] with identifier [dev]                                                                                                                                                     convert.py:56
 [21:41:24] WARNING  Track with identifier: [dev] and ID: vbiz8rpaul3w already exists.                                                                                                                                 dev.py:50
            WARNING  Found Existing Assignment [explore-the-environment] with ID: 3swpbta9acpw                                                                                                                         dev.py:74
@@ -67,7 +75,7 @@ vscode ➜ /workspaces/development/instruqt-converter (main ✗) $ python3 conve
 ### Converting to Prod Track
 
 ```shell
-vscode ➜ /workspaces/development/instruqt-converter (main ✗) $ python3 convert.py --track /workspaces/development/network-automation-challenge-lab/instruqt-challenge-cisco-ansible --to prod
+vscode ➜ /workspaces/development/instruqt-converter (main ✗) $ convert --track /workspaces/development/network-automation-challenge-lab/instruqt-challenge-cisco-ansible --to prod
 [21:42:20] INFO     Converting to [prod] with identifier [dev]                                                                                                                                                    convert.py:60
 [21:42:21] WARNING  Track with identifier: [dev] and ID: zcr4yrnk5jgr already exists.                                                                                                                                prod.py:50
            WARNING  Found Existing Assignment [explore-the-environment] with ID: puhvtzr2iij2                                                                                                                        prod.py:74
@@ -92,7 +100,7 @@ vscode ➜ /workspaces/development/instruqt-converter (main ✗) $ python3 conve
 The tool also supports using track identifiers other than `dev`.  To change the identifier use the `--identifier` command line option.
 
 ```shell
-vscode ➜ /workspaces/development/instruqt-converter (main ✗) $ python3 convert.py --track /workspaces/development/network-automation-challenge-lab/instruqt-challenge-cisco-ansible --to dev --identifier nick
+vscode ➜ /workspaces/development/instruqt-converter (main ✗) $ convert --track /workspaces/development/network-automation-challenge-lab/instruqt-challenge-cisco-ansible --to dev --identifier nick
 [21:58:22] INFO     Converting to [dev] with identifier [nick]                                                                                                                                                    convert.py:56
 [21:58:23] ERROR    Track with identifier: nick does not exist                                                                                                                                                        dev.py:57
            INFO     Assignment [explore-the-environment] does not exist  Removing id.                                                                                                                                 dev.py:88
@@ -111,6 +119,14 @@ vscode ➜ /workspaces/development/instruqt-converter (main ✗) $ python3 conve
            INFO     Completed update of /workspaces/development/network-automation-challenge-lab/instruqt-challenge-cisco-ansible/track.yml                                                                          dev.py:141
            INFO     Track conversion to [dev] with identifier [nick] complete!
 ```
+
+## Version
+
+Version: v0.0.0
+
+## Changelog
+
+See `CHANGELOG.md` for changes.
 
 ## Contributors
 
