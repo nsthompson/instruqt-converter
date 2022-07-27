@@ -34,7 +34,7 @@ version_variable = [
     "instruqt_converter/__init__.py:__version__"
 ]
 version_toml = [
-    "pyproject.toml:version"
+    "pyproject.toml:tool.poetry.version"
 ]
 version_pattern = [
     "README.md:Version: v{version}"
