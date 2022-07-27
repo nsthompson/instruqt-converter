@@ -1,4 +1,4 @@
-# changelog
+# CHANGELOG
 
 <!--next-version-placeholder-->
 
