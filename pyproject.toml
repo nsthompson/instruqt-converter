@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "instruqt_converter"
+version = "0.0.0"
+description = "Python-based CLI utility to convert Instruqt tracks to and from a temporary state for testing"
+authors = ["Nick Thompson <nick@imperial.org>"]
+readme = "README.md"
+homepage = "https://github.com/nsthompson/instruqt-converter"
+license = "MIT"
+packages = [
+    { include = "instruqt_converter" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0.0"
+rich-click = "^1.5.1"
+rich = "^12.5.1"
+python-frontmatter = "^1.0.0"
+PyYAML = "^6.0"
+gql = {extras = ["all"], version = "^3.4.0"}
+pydantic = "^1.9.1"
+
+[tool.poetry.dev-dependencies]
+python-semantic-release = "^7.29.6"
+flake8 = "^4.0.1"
+black = "^22.6.0"
+pre-commit = "^2.20.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+version_variable = [
+    'instruqt_converter/__init__.py:__version__'
+]
+version_toml = [
+    'pyproject.toml:tool.poetry.version'
+]
+version_pattern = [
+    'README.md:Version: v{version}'
+]
+branch = "main"                             # branch to make releases of
+changelog_file = "CHANGELOG.md"             # changelog file
+build_command = "poetry build"              # build dists
+upload_to_release = true                    # auto-create GitHub release
+upload_to_repository = true                 # don't auto-upload to PyPI
+remove_dist = false                         # don't remove dists
+patch_without_tag = true                    # patch release by default
+
+[tool.poetry.scripts]
+convert = "instruqt_converter.convert:convert_track"
