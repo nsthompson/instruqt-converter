@@ -1,6 +1,9 @@
 # CHANGELOG
 <!--next-version-placeholder-->
 
+## v0.0.1-beta.4 (2022-07-28)
+
+
 ## v0.0.1-beta.3 (2022-07-28)
 
 
