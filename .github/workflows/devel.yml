@@ -71,6 +71,9 @@ jobs:
         python-version: ['3.9']
         os: [ubuntu-latest]
     steps:
+      - name: Sleep for 60 seconds
+        run: sleep 60s
+        shell: bash
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
