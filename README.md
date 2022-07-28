@@ -122,7 +122,7 @@ vscode ➜ /workspaces/development/instruqt-converter (main ✗) $ convert --tra
 
 ## Version
 
-Version: v0.0.1-beta.2
+Version: v0.0.1-beta.3
 
 ## Changelog
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "instruqt_converter"
-version = "0.0.1-beta.2"
+version = "0.0.1-beta.3"
 description = "Python-based CLI utility to convert Instruqt tracks to and from a temporary state for testing"
 authors = ["Nick Thompson <nick@imperial.org>"]
 readme = "README.md"
