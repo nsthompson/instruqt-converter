@@ -66,7 +66,6 @@ jobs:
     name: devel-test
     runs-on: ubuntu-latest
     needs: release
-    environment: test
     strategy:
       matrix:
         python-version: ['3.9']
