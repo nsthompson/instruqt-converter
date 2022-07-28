@@ -54,11 +54,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.IC_GITHUB_TOKEN }}
           REPOSITORY_USERNAME: __token__
-          REPOSITORY_PASSWORD: ${{ secrets.TEST_PYPI_TOKEN }}
+          REPOSITORY_PASSWORD: ${{ secrets.PYPI_TOKEN }}
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          poetry run semantic-release publish --prerelease -D branch="develop" -D commit_author="github-actions <actions@github.com>" -D repository_url="https://test.pypi.org/legacy/"
+          poetry run semantic-release publish -D commit_author="github-actions <actions@github.com>"
   test:
     if: |
       github.event.pull_request.merged ||
