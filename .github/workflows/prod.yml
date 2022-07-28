@@ -1,4 +1,4 @@
-name: prod-deploy
+name: prod-release
 on:
   pull_request:
     types:
@@ -7,6 +7,7 @@ on:
       - main
     paths-ignore:
       - '**/**.md'
+      - '.devcontainer/**'
   workflow_dispatch:
     inputs:
       run-manually:
