@@ -6,6 +6,9 @@ authors = ["Nick Thompson <nick@imperial.org>"]
 readme = "README.md"
 homepage = "https://github.com/nsthompson/instruqt-converter"
 license = "MIT"
+include = [
+    "LICENSE",
+]
 packages = [
     { include = "instruqt_converter" },
 ]
