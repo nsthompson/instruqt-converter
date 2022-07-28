@@ -1,3 +1,5 @@
+[![develop-release](https://github.com/nsthompson/instruqt-converter/actions/workflows/devel.yml/badge.svg)](https://github.com/nsthompson/instruqt-converter/actions/workflows/devel.yml) [![prod-release](https://github.com/nsthompson/instruqt-converter/actions/workflows/prod.yml/badge.svg)](https://github.com/nsthompson/instruqt-converter/actions/workflows/prod.yml)
+
 # instruqt-converter
 
 Python based CLI tool to convert Instruqt (<https://www.instruqt.com>) tracks to and from a temporary state for testing.  This tool utilizes the Instruqt GraphQL API to validate tracks and use existing track and challenge IDs if available.

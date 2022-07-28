@@ -3,9 +3,11 @@ on:
   push:
     paths-ignore:
       - '**/**.md'
+      - '.devcontainer/**'
   pull_request:
     paths-ignore:
       - '**/**.md'
+      - '.devcontainer/**'
   workflow_dispatch:
     inputs:
       run-manually:
