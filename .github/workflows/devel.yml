@@ -71,8 +71,8 @@ jobs:
         python-version: ['3.9']
         os: [ubuntu-latest]
     steps:
-      - name: Sleep for 60 seconds
-        run: sleep 60s
+      - name: Sleep for 120 seconds
+        run: sleep 120s
         shell: bash
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
@@ -81,7 +81,7 @@ jobs:
       - name: Install Package
         run: |
           python -m pip install --upgrade pip
-          python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ instruqt_converter
+          python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ instruqt-converter
       - name: Test instruqt_converter
         run: |
           convert --help
