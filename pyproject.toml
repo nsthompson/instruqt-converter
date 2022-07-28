@@ -49,7 +49,6 @@ upload_to_release = true                    # auto-create GitHub release
 upload_to_repository = true                 # don't auto-upload to PyPI
 remove_dist = false                         # don't remove dists
 patch_without_tag = true                    # patch release by default
-version_source = "tag"                      # use tag for version source
 
 [tool.poetry.scripts]
 convert = "instruqt_converter.convert:convert_track"
