@@ -57,8 +57,13 @@ def convert_to_dev(settings, track_path, identifier):
     # Loop Through Assignments and update or remove id:
     for assignment in assignment_paths:
         try:
+            log.info("Reviewing Assignment: %s", assignment)
             with click.open_file(assignment, mode="r") as af_r:
-                doc = frontmatter.loads(af_r.read())
+                try:
+                    doc = frontmatter.loads(af_r.read())
+                except:
+                    log.error("Unable to load the assignment yaml metadata from %s", assignment)
+                    sys.exit(1)
                 # Check to see if dev track already exists
                 if track_exists:
                     challenge_found = [
