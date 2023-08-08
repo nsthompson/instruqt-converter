@@ -59,6 +59,7 @@ def convert_to_dev(settings, track_path, identifier):
     for assignment in assignment_paths:
         try:
             log.info("Reviewing Assignment: %s", assignment)
+            log.info("No really -- Reviewing Assignment: %s", assignment)
             with click.open_file(assignment, mode="r") as af_r:
                 try:
                     doc = frontmatter.loads(af_r.read())
