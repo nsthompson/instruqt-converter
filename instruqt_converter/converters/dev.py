@@ -37,6 +37,7 @@ def convert_to_dev(settings, track_path, identifier):
 
     # Remove IDs from assignments.md files
     assignment_paths = glob.glob(f"{track_path}/**/assignment.md", recursive=True)
+    log.info("Assignment Paths Found: %s", str(assignment_paths))
 
     # Instantiate API
     api = API(config)
