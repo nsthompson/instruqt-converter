@@ -25,7 +25,8 @@ def convert_to_dev(settings, track_path, identifier):
     # Validate track.yml is in the proper state to convert
     if f"-{identifier}" in track["slug"]:
         log.error(
-            f"It looks like the track slug " f"already has the {identifier} suffix."
+            f"It looks like the track slug "
+            f"already has the {identifier} suffix."
         )
         sys.exit(1)
 
@@ -36,7 +37,9 @@ def convert_to_dev(settings, track_path, identifier):
     track["title"] = f"{identifier.upper()} - " + track["title"]
 
     # Remove IDs from assignments.md files
-    assignment_paths = glob.glob(f"{track_path}/**/assignment.md", recursive=True)
+    assignment_paths = glob.glob(
+        f"{track_path}/**/assignment.md", recursive=True
+    )
     log.info("Assignment Paths Found: %s", str(assignment_paths))
 
     # Instantiate API
@@ -63,8 +66,12 @@ def convert_to_dev(settings, track_path, identifier):
             with click.open_file(assignment, mode="r") as af_r:
                 try:
                     doc = frontmatter.loads(af_r.read())
-                except:
-                    log.error("Unable to load the assignment yaml metadata from %s", assignment)
+                except (yaml.YAMLError, ValueError, UnicodeDecodeError) as exc:
+                    log.error(
+                        "Unable to load assignment metadata from %s: %s",
+                        assignment,
+                        exc,
+                    )
                     sys.exit(1)
                 # Check to see if dev track already exists
                 if track_exists:
@@ -83,7 +90,8 @@ def convert_to_dev(settings, track_path, identifier):
                         doc.metadata["id"] = challenge_found[0]["id"]
                     else:
                         log.warn(
-                            "Assignment [%s] does not exist.", doc.metadata["slug"]
+                            "Assignment [%s] does not exist.",
+                            doc.metadata["slug"],
                         )
                         doc.metadata.pop("id", None)
                 else:
@@ -98,7 +106,9 @@ def convert_to_dev(settings, track_path, identifier):
                     doc, sort_keys=False, handler=YAMLHandler()
                 )
                 # Remove the blank line between frontmatter and content
-                assignment_output = re.sub("---\n\n", "---\n", assignment_output, 1)
+                assignment_output = re.sub(
+                    "---\n\n", "---\n", assignment_output, 1
+                )
                 with click.open_file(assignment, mode="w") as af_w:
                     af_w.write(assignment_output)
                     # Add single newline to end of file
@@ -108,13 +118,17 @@ def convert_to_dev(settings, track_path, identifier):
                 af_r.close()
 
         except FileNotFoundError as assignment_exception:
-            log.error("Unable to open %s: %s", assignment, assignment_exception)
+            log.error(
+                "Unable to open %s: %s", assignment, assignment_exception
+            )
             sys.exit(1)
 
     # Remove ID from track.yml
     if track_exists:
         # Set the id in track.yml to match existing track
-        log.info("Setting id in track.yml to: %s", track_results["track"]["id"])
+        log.info(
+            "Setting id in track.yml to: %s", track_results["track"]["id"]
+        )
         track["id"] = track_results["track"]["id"]
     else:
         # Track not Found, remove the id
@@ -130,7 +144,8 @@ def convert_to_dev(settings, track_path, identifier):
             yaml.dump(track, tf_w, default_style=None, sort_keys=False)
             log.info("Completed update of %s/track.yml", track_path)
             log.info(
-                "Track conversion to [dev] with identifier [%s] complete!", identifier
+                "Track conversion to [dev] with identifier [%s] complete!",
+                identifier,
             )
     except PermissionError as update_exception:
         log.error("Unable to write track.yml: %s", update_exception)
