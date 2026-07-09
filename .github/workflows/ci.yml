@@ -22,14 +22,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.9', '3.10']
+        python-version: ['3.13', '3.14', '3.15', '3.16']
         os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Check out code from GitHub
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install poetry
@@ -37,7 +37,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry
       - name: Cache poetry dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pypoetry/virtualenvs
           key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
@@ -47,4 +47,4 @@ jobs:
           poetry install
       # TODO: write some unit tests and call them here
       - name: Run pre-commit hooks
-        uses: pre-commit/action@v3.0.0
+        uses: pre-commit/action@v3.0.1
