@@ -20,8 +20,8 @@ rich = "*"
 python-frontmatter = "*"
 PyYAML = "*"
 gql = {extras = ["all"], version = "*"}
-pydantic = "*"
-pydantic-settings = "*"
+pydantic = ">=2"
+pydantic-settings = ">=2"
 frozenlist = "*"
 multidict = "*"
 
