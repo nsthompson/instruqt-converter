@@ -37,6 +37,7 @@ def convert_to_dev(settings, track_path, identifier):
 
     # Remove IDs from assignments.md files
     assignment_paths = glob.glob(f"{track_path}/**/assignment.md", recursive=True)
+    log.info("Assignment Paths Found: %s", str(assignment_paths))
 
     # Instantiate API
     api = API(config)
@@ -57,8 +58,14 @@ def convert_to_dev(settings, track_path, identifier):
     # Loop Through Assignments and update or remove id:
     for assignment in assignment_paths:
         try:
+            log.info("Reviewing Assignment: %s", assignment)
+            log.info("No really -- Reviewing Assignment: %s", assignment)
             with click.open_file(assignment, mode="r") as af_r:
-                doc = frontmatter.loads(af_r.read())
+                try:
+                    doc = frontmatter.loads(af_r.read())
+                except:
+                    log.error("Unable to load the assignment yaml metadata from %s", assignment)
+                    sys.exit(1)
                 # Check to see if dev track already exists
                 if track_exists:
                     challenge_found = [
