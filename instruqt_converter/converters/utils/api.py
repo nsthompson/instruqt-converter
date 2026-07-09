@@ -4,7 +4,6 @@ from gql.transport.requests import RequestsHTTPTransport
 from gql.transport.requests import log as requests_logger
 from gql.transport.exceptions import TransportQueryError
 
-
 requests_logger.setLevel(logging.WARNING)
 
 
@@ -21,8 +20,7 @@ class API:
 
     def graphql_query(self, query_type, slug):
         if query_type == "track":
-            query = gql(
-                """
+            query = gql("""
                 query($trackSlug:String!, $orgSlug:String!) {
                     track(trackSlug:$trackSlug, organizationSlug:$orgSlug) {
                         id
@@ -32,10 +30,12 @@ class API:
                             slug
                         }
                     }
-                }"""
-            )
+                }""")
 
-            variables = {"trackSlug": slug, "orgSlug": self.config.INSTRUQT_ORG_SLUG}
+            variables = {
+                "trackSlug": slug,
+                "orgSlug": self.config.INSTRUQT_ORG_SLUG,
+            }
 
             try:
                 result = self.client.execute(query, variable_values=variables)

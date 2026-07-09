@@ -5,7 +5,6 @@ from rich.logging import RichHandler
 from .core import config
 from .converters import convert_to_dev, convert_to_prod
 
-
 FORMAT = "%(message)s"
 logging.basicConfig(
     level="INFO", format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]

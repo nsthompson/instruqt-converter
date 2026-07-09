@@ -77,7 +77,8 @@ def convert_to_prod(settings, track_path, identifier):
                         doc.metadata["id"] = challenge_found[0]["id"]
                     else:
                         log.warn(
-                            "Assignment [%s] does not exist.", doc.metadata["slug"]
+                            "Assignment [%s] does not exist.",
+                            doc.metadata["slug"],
                         )
                         doc.metadata.pop("id", None)
                 else:
@@ -124,7 +125,8 @@ def convert_to_prod(settings, track_path, identifier):
             yaml.dump(track, tf_w, default_style=None, sort_keys=False)
             log.info("Completed update of %s/track.yml", track_path)
             log.info(
-                "Track conversion to [prod] with identifier [%s] complete!", identifier
+                "Track conversion to [prod] with identifier [%s] complete!",
+                identifier,
             )
     except PermissionError as update_exception:
         log.error("Unable to write track.yml: %s", update_exception)

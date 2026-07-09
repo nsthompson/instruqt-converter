@@ -63,8 +63,12 @@ def convert_to_dev(settings, track_path, identifier):
             with click.open_file(assignment, mode="r") as af_r:
                 try:
                     doc = frontmatter.loads(af_r.read())
-                except:
-                    log.error("Unable to load the assignment yaml metadata from %s", assignment)
+                except (yaml.YAMLError, ValueError, UnicodeDecodeError) as exc:
+                    log.error(
+                        "Unable to load assignment metadata from %s: %s",
+                        assignment,
+                        exc,
+                    )
                     sys.exit(1)
                 # Check to see if dev track already exists
                 if track_exists:
@@ -83,7 +87,8 @@ def convert_to_dev(settings, track_path, identifier):
                         doc.metadata["id"] = challenge_found[0]["id"]
                     else:
                         log.warn(
-                            "Assignment [%s] does not exist.", doc.metadata["slug"]
+                            "Assignment [%s] does not exist.",
+                            doc.metadata["slug"],
                         )
                         doc.metadata.pop("id", None)
                 else:
@@ -130,7 +135,8 @@ def convert_to_dev(settings, track_path, identifier):
             yaml.dump(track, tf_w, default_style=None, sort_keys=False)
             log.info("Completed update of %s/track.yml", track_path)
             log.info(
-                "Track conversion to [dev] with identifier [%s] complete!", identifier
+                "Track conversion to [dev] with identifier [%s] complete!",
+                identifier,
             )
     except PermissionError as update_exception:
         log.error("Unable to write track.yml: %s", update_exception)
