@@ -16,9 +16,7 @@ class API:
         _transport = RequestsHTTPTransport(
             url=self.config.INSTRUQT_API_URL, headers=_headers, use_json=True
         )
-        self.client = Client(
-            transport=_transport, fetch_schema_from_transport=True
-        )
+        self.client = Client(transport=_transport, fetch_schema_from_transport=True)
 
     def graphql_query(self, query_type, slug):
         if query_type == "track":

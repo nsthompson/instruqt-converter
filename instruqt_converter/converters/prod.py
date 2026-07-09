@@ -37,9 +37,7 @@ def convert_to_prod(settings, track_path, identifier):
     track["title"] = track["title"].replace(f"{identifier.upper()} - ", "")
 
     # Remove IDs from assignments.md files
-    assignment_paths = glob.glob(
-        f"{track_path}/**/assignment.md", recursive=True
-    )
+    assignment_paths = glob.glob(f"{track_path}/**/assignment.md", recursive=True)
 
     # Instantiate API
     api = API(config)
@@ -95,9 +93,7 @@ def convert_to_prod(settings, track_path, identifier):
                     doc, sort_keys=False, handler=YAMLHandler()
                 )
                 # Remove the blank line between frontmatter and content
-                assignment_output = re.sub(
-                    "---\n\n", "---\n", assignment_output, 1
-                )
+                assignment_output = re.sub("---\n\n", "---\n", assignment_output, 1)
                 with click.open_file(assignment, mode="w") as af_w:
                     af_w.write(assignment_output)
                     # Add single newline to end of file
@@ -107,17 +103,13 @@ def convert_to_prod(settings, track_path, identifier):
                 af_r.close()
 
         except FileNotFoundError as assignment_exception:
-            log.error(
-                "Unable to open %s: %s", assignment, assignment_exception
-            )
+            log.error("Unable to open %s: %s", assignment, assignment_exception)
             sys.exit(1)
 
     # Remove ID from track.yml
     if track_exists:
         # Set the id in track.yml to match existing track
-        log.info(
-            "Setting id in track.yml to: %s", track_results["track"]["id"]
-        )
+        log.info("Setting id in track.yml to: %s", track_results["track"]["id"])
         track["id"] = track_results["track"]["id"]
     else:
         # Track not Found, remove the id

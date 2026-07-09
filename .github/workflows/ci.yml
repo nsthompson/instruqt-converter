@@ -49,8 +49,8 @@ jobs:
       - name: Install dev tools and pre-commit
         run: |
           poetry install --no-interaction
-          python -m pip install --upgrade pip
-          python -m pip install pre-commit
+          python -m pip install --upgrade pip setuptools virtualenv
+          python -m pip install --upgrade pre-commit
 
       - name: Run pre-commit hooks via installed pre-commit
         run: |
