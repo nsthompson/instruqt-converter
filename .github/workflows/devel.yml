@@ -2,7 +2,7 @@ name: develop-release
 on:
   push:
     branches:
-      - develop
+      - devel
     paths-ignore:
       - '**/**.md'
   workflow_dispatch:
@@ -39,7 +39,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry
       - name: Cache poetry dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/pypoetry/virtualenvs
           key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
