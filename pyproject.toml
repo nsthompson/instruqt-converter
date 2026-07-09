@@ -21,10 +21,11 @@ python-frontmatter = "*"
 PyYAML = "*"
 gql = {extras = ["all"], version = "*"}
 pydantic = "*"
+pydantic-settings = "*"
 frozenlist = "*"
 multidict = "*"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 python-semantic-release = "*"
 flake8 = "*"
 black = "*"
@@ -62,3 +63,6 @@ dev = [
     "black (>=26.5.1,<27.0.0)",
     "flake8 (>=7.3.0,<8.0.0)"
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
