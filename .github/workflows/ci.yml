@@ -46,5 +46,16 @@ jobs:
           poetry config virtualenvs.create false
           poetry install
       # TODO: write some unit tests and call them here
-      - name: Run pre-commit hooks
-        uses: pre-commit/action@v3.0.1
+      - name: Install dev tools and pre-commit
+        run: |
+          poetry install --no-interaction
+          python -m pip install --upgrade pip
+          python -m pip install pre-commit
+
+      - name: Run pre-commit hooks via installed pre-commit
+        run: |
+          pre-commit run --all-files
+
+      - name: Run tests
+        run: |
+          poetry run pytest -q
