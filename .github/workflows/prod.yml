@@ -60,7 +60,7 @@ jobs:
           poetry run semantic-release version --push --vcs-release
           if [ -n "$(ls -A dist 2>/dev/null)" ]; then
             poetry run semantic-release publish
-            poetry publish --no-build
+            poetry publish
           else
             echo "No new release detected; skipping publish."
           fi

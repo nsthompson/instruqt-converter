@@ -61,7 +61,7 @@ jobs:
           if [ -n "$(ls -A dist 2>/dev/null)" ]; then
             poetry run semantic-release publish
             poetry config repositories.testpypi https://test.pypi.org/legacy/
-            poetry publish --no-build --repository testpypi
+            poetry publish --repository testpypi
           else
             echo "No new release detected; skipping publish."
           fi
