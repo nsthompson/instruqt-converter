@@ -37,22 +37,27 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.semantic_release]
-version_variable = [
-    'instruqt_converter/__init__.py:__version__'
+version_variables = [
+    "instruqt_converter/__init__.py:__version__",
 ]
 version_toml = [
-    'pyproject.toml:tool.poetry.version'
+    "pyproject.toml:tool.poetry.version",
 ]
-version_pattern = [
-    'README.md:Version: v{version}'
-]
-branch = "main"                             # branch to make releases of
-changelog_file = "CHANGELOG.md"             # changelog file
-build_command = "poetry build"              # build dists
-upload_to_release = true                    # auto-create GitHub release
-upload_to_repository = true                 # don't auto-upload to PyPI
-remove_dist = false                         # don't remove dists
-patch_without_tag = true                    # patch release by default
+build_command = "poetry build"
+allow_zero_version = true
+major_on_zero = false
+
+[tool.semantic_release.branches.main]
+match = "main"
+prerelease = false
+
+[tool.semantic_release.branches.devel]
+match = "devel"
+prerelease = true
+prerelease_token = "rc"
+
+[tool.semantic_release.publish]
+upload_to_vcs_release = true
 
 [tool.poetry.scripts]
 convert = "instruqt_converter.convert:convert_track"
